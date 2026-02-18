@@ -1,0 +1,24 @@
+<div class="profile-wrapper">
+    <h2>PROFILE</h2>
+  <div class="profile-card">
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Age:</strong> {{ age }}</p>
+  </div>
+
+  <div class="feedback-section">
+    <h3>Share Your Feedback</h3>
+
+    <input type="text" placeholder="Your name" [(ngModel)]="feedbackName" name="feedbackName" required/>
+
+    <div class="rating-stars">
+      <span *ngFor="let star of [1, 2, 3, 4, 5]"class="star" [class.selected]="rating >= star" (click)="setRating(star)">
+        ★
+      </span>
+    </div>
+
+    <textarea placeholder="Write your feedback..." [(ngModel)]="feedback" name="feedback" rows="4" required></textarea>
+
+    <button (click)="submitFeedback()">Submit Feedback</button>
+  </div>
+</div>

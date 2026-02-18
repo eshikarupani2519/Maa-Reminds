@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2>Upcoming Appointments</h2>
+  <div *ngIf="appointments.length > 0; else noAppointments">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Doctor's Name</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appointment of appointments">
+          <td>{{ appointment.doctorName }}</td>
+          <td>{{ appointment.date | date }}</td>
+          <td>{{ appointment.time }}</td>
+          <td>
+            <button (click)="viewAppointment(appointment._id)" class="btn btn-info btn-sm">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noAppointments>
+    <div class="alert alert-info">No appointments scheduled.</div>
+  </ng-template>
+  <button class="btn btn-primary" (click)="navigateToPage('add-appointment')">Add appointment</button>
+</div>

@@ -1,0 +1,70 @@
+/* Main form container */
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2.5rem;
+  justify-content: space-between;
+  background-color: #eaf4fe;
+  width: 90%;
+  max-width: 600px;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Each form field block */
+.label-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+/* Label styling */
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+/* Input styling */
+input {
+  border: 1px solid #1a82e7;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Error messages */
+.errors {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Submit button styling */
+button {
+  height: 2.2rem;
+  background-color: #1a82e7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #a9d2f4;
+  cursor: not-allowed;
+}
+
+/* Heading styling */
+h2.text-primary {
+  color: #1a82e7;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}

@@ -1,0 +1,53 @@
+<!-- <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+    
+    <div class="login-form">
+        
+        <div class="label-input">
+            <label for="username">Username</label>
+            <input type="text" placeholder="Enter username" formControlName="username" />
+        </div>
+        <p *ngIf="isFormControlError('username')">username required</p>
+         <p *ngIf="checkIfUserExists('username')">username already exists</p> -->
+        <!-- <div class="label-input">
+            <label for="email">Email</label>
+            <input type="text" placeholder="Enter email" formControlName="email" />
+        </div>
+        <p *ngIf="isEmailValid('email')">email should be valid</p>
+        <p *ngIf="isEmailRequired('email')">email required</p> -->
+         <!-- <p *ngIf="checkIfUserExists('email')">username already exists</p> -->
+        <!-- <div class="label-input">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" formControlName="password" />
+        </div>
+        <a (click)="navigateToForgotPW()" class="text-primary">Forgot password?</a>
+        <button>Login</button>
+        <p *ngIf="inValidCredentials" class="errors">Username or password is incorrect</p>
+    </div>
+</form>
+{{loginForm.value | json}} --> 
+<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+  <div class="login-form">
+    <h2>Login</h2>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" placeholder="Enter your email" formControlName="email" />
+      <p class="error" *ngIf="isEmailValid('email')">Email should be valid</p>
+      <p class="error" *ngIf="isEmailRequired('email')">Email is required</p>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" placeholder="Enter your password" formControlName="password" />
+    </div>
+
+    <a (click)="navigateToForgotPW()" class="forgot-link">Forgot password?</a>
+
+    <button type="submit" class="login-btn">Login</button>
+
+    <p *ngIf="inValidCredentials" class="error">Invalid email or password</p>
+  </div>
+</form>
+

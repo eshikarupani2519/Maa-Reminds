@@ -1,0 +1,52 @@
+<div class="dashboard-container"> 
+  <div class="header">
+    <h1>Dashboard</h1>
+    <button class="profile-button" (click)="navigateToPage('profile')">
+  <i class="fas fa-user-circle"></i>
+  Profile
+</button>
+
+  </div>
+
+  <div class="cards-container">
+
+    <div class="card" (click)="navigateToPage('medicine-reminder')">
+      <div class="icon-circle"><i class="fas fa-pills"></i></div>
+      Medication Reminders
+    </div>
+
+    <div class="card" (click)="navigateToPage('appointment-reminder')">
+      <div class="icon-circle"><i class="fas fa-calendar-check"></i></div>
+      Your Appointments
+    </div>
+
+    <div class="card" (click)="navigateToPage('missed-dosage')">
+      <div class="icon-circle"><i class="fas fa-exclamation-circle"></i></div>
+      Missed Dosages
+    </div>
+
+    <div class="card" (click)="navigateToPage('medicine-history')">
+      <div class="icon-circle"><i class="fas fa-history"></i></div>
+      Medicine History
+    </div>
+
+    <div class="card" (click)="navigateToPage('medicine-stock')">
+      <div class="icon-circle"><i class="fas fa-boxes"></i></div>
+      My Medicine Stocks
+    </div>
+
+    <div class="card" (click)="navigateToPage('appointment-history')">
+      <div class="icon-circle"><i class="fas fa-notes-medical"></i></div>
+      Appointment History
+    </div>
+
+    <!-- <div class="card" (click)="navigateToPage('medicine-reminder')">Medication Reminders</div>
+    <div class="card" (click)="navigateToPage('your-appointments')">Your Appointments</div>
+    <div class="card" (click)="navigateToPage('missed-dosages')">Missed Dosages</div>
+    <div class="card" (click)="navigateToPage('medicine-history')">Medicine History</div>
+    <div class="card" (click)="navigateToPage('my-medicines-stock')">My Medicine Stocks</div>
+     <div class="card" (click)="navigateToPage('appointment-history')">Appointment History</div> -->
+
+  </div>
+</div>
+

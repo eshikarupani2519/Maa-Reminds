@@ -1,0 +1,66 @@
+<!-- <div>
+    
+<form class="reg-form" [formGroup]="addAppointment" (ngSubmit)="submitData()">
+    <h2 class="text-primary text-center my-2">Add an Appointment</h2>
+<div class="label-input">
+    <label for="email">Doctor name</label>
+    <input type="text" name="name" required formControlName="name">
+</div>
+<p *ngIf="isFormControlError('name')" class="errors">name required</p>
+
+<div class="label-input">
+    <label for="email">Clinic name</label>
+    <input type="text" name="name" required formControlName="clinicName">
+</div>
+<p *ngIf="isFormControlError('name')" class="errors">name required</p>
+
+<div class="label-input">
+    <label for="Date">Date</label>
+    <input type="date" name="startDate" required formControlName="Date">
+</div>
+<p *ngIf="isFormControlError('phone')" class="errors">date required</p>
+
+
+
+<div class="label-input">
+    <label for="timing">Timing</label>
+    <input type="time" name="timing" required formControlName="timing">
+</div>
+<p *ngIf="isFormControlError('timing')" class="errors">timing required</p>
+
+
+
+<div class="label-input">
+    <label for="purpose">Purpose</label>
+    <input type="purpose" name="purpose" required formControlName="purpose">
+</div>
+
+<button [disabled]="this.addAppointment.invalid" >Add</button>
+</form>
+</div>
+{{regFormGroup.value | json}} -->
+
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Edit Appointment' : 'Add New Appointment' }}</h2>
+  <form [formGroup]="addAppointmentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="doctorName">Doctor's Name</label>
+      <input type="text" id="doctorName" formControlName="doctorName" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" id="date" formControlName="date" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="time">Time</label>
+      <input type="time" id="time" formControlName="time" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="notes">Notes</label>
+      <textarea id="notes" formControlName="notes" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!addAppointmentForm.valid">
+      {{ isEditMode ? 'Update' : 'Add' }} Appointment
+    </button>
+  </form>
+</div>

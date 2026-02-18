@@ -1,0 +1,19 @@
+<div class="forgot-password-container">
+  
+  <form [formGroup]="forgotPWForm" class="login-form" (ngSubmit)="submitForm()">
+    <h2 class="form-title">Forgot Password</h2>
+    <div class="label-input">
+      <label>Email</label>
+      <input type="text" placeholder="Enter email" formControlName="email" />
+    </div>
+    <p *ngIf="isEmailValid('email')" class="errors">Email should be valid</p>
+    <p *ngIf="isEmailRequired('email')" class="errors">Email required</p>
+
+    <div class="label-input">
+      <label>New Password</label>
+      <input type="password" placeholder="Enter new password" formControlName="newPassword" />
+    </div>
+
+    <button type="submit" [disabled]="forgotPWForm.invalid">Reset Password</button>
+  </form>
+</div>

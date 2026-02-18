@@ -1,0 +1,14 @@
+<div class="top-bar">
+  <button class="rtn-to-dashboard" (click)="goToDashboard()">Return to Dashboard</button>
+</div>
+
+<div class="d-flex justify-content-center align-items-center" style="height: 95vh;">
+  <div class="calendar-container">
+    <div class="column" *ngFor="let week of calendar">
+      <div class="pill" *ngFor="let day of week" [class.filled]="day.isFilled">
+        <div class="day">{{ day.day }}</div>
+        <div class="date">{{ day.date }}</div>
+      </div>
+    </div>
+  </div>
+</div>

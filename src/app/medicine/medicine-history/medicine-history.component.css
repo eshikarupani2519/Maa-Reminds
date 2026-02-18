@@ -1,0 +1,141 @@
+.dashboard-container {
+  padding: 20px 40px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+}
+
+.header h1 {
+  color: rgb(3, 45, 91);
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card {
+  background-color: rgb(223, 240, 255);
+  color: rgb(3, 45, 91);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 70%;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  height: auto;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  background-color: #d5eaff;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left h3 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.left p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: rgb(3, 45, 91);
+}
+
+.arrow {
+  font-size: 24px;
+  color: rgb(3, 45, 91);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.add-btn {
+  background-color: rgb(3, 45, 91);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: rgb(1, 35, 70);
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: auto;
+  width: fit-content;
+  margin-right: 40px;
+}
+.new-pill-btn {
+  padding: 8px 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.new-pill-btn:hover {
+  background-color: #0056b3;
+}
+
+.sort-container label {
+  font-weight: 500;
+  color: rgb(3, 45, 91);
+}
+
+.sort-container select {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+.right{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.rtn-to-dashboard {
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+  margin-left: 12px; /* spacing between buttons */
+  padding: 10px 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 14px;
+}
+
+.rtn-to-dashboard:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.03);
+}

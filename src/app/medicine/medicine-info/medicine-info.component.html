@@ -1,0 +1,60 @@
+<!-- <div class="medicine-info" *ngIf="medicine">
+    <h2>{{medicine.pillName}}</h2>
+    <p>Tenure: {{medicine.startDate | date}} to {{medicine.endDate | date}}</p>
+    <p>Frequency: {{medicine.frequency}}</p>
+    <p>Timing: {{medicine.timing}}</p>
+    <p>Before or after meal? -> {{medicine.beforeAfterMeal}}</p>
+    <p>Quantity of medicine remaining: {{medicine.quantityYouHave}}</p>
+    <p>description: {{medicine.description}}</p>
+    <div>
+        <button (click)="editMedicine(medicine._id)" class="btn btn-primary">Edit</button>
+<button (click)="deleteMedicine(medicine._id)" class="btn btn-danger">Delete</button>
+    </div>
+</div>
+<div *ngIf="!medicine">
+  <p>Loading medicine information...</p>
+</div> -->
+
+
+<div class="medicine-info">
+  <h2>{{ medicine.pillName }}</h2>
+
+  <div class="info-line">
+    <strong>Tenure:</strong>
+    <span>{{medicine.startDate | date}} to {{medicine.endDate | date}}</span>
+  </div>
+
+  <div class="info-line">
+    <strong>Frequency:</strong>
+    <span>{{ medicine.frequency }}</span>
+  </div>
+
+  <div class="info-line">
+    <strong>Timing:</strong>
+    <span>{{ medicine.timing }}</span>
+  </div>
+
+  <div class="info-line">
+    <strong>Meal:</strong>
+    <span>{{ medicine.beforeAfterMeal }}</span>
+  </div>
+
+  <div class="info-line">
+    <strong>Quantity Left:</strong>
+    <span>{{ medicine.quantityYouHave }}</span>
+  </div>
+
+  <div class="info-line">
+    <strong>Description:</strong>
+    <span>{{ medicine.description }}</span>
+  </div>
+
+  <div class="button-grp">
+    <button (click)="editMedicine(medicine._id)" class="btn btn-primary">Edit</button>
+<button (click)="deleteMedicine(medicine._id)" class="btn btn-danger">Delete</button> 
+  </div>
+    
+</div>
+<div *ngIf="!medicine">
+  <p>Loading medicine information...</p>
+</div>

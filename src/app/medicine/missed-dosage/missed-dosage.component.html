@@ -1,0 +1,24 @@
+<div class="dashboard-container">
+  <div class="header">
+    <h1>Missed Dosage</h1>
+
+    <button class="rtn-to-dashboard" (click)="goToDashboard()">Return to Dashboard</button>
+  </div>
+
+  <div class="cards-container">
+    <div class="card" *ngFor="let med of meds">
+      <div class="card-content">
+        <div>
+          <h3>{{ med.name }}</h3>
+          <p>{{ med.time }}</p>
+          <p>Start:{{med.startDate}}</p>
+          <p>End:{{med.endDate}}</p>
+        </div>
+        <div class="right">
+            <div><button>Already taken?</button></div>
+        <div class="arrow">➔</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

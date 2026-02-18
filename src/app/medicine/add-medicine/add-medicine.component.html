@@ -1,0 +1,59 @@
+<div>
+    <h2 class="text-primary text-center my-2">{{ formTitle }}</h2>
+    <form class="reg-form" [formGroup]="addPill" (ngSubmit)="onSubmit()">
+        <div class="label-input">
+            <label for="pillName">Pill name</label>
+            <input type="text" name="name" required formControlName="pillName">
+        </div>
+        <p *ngIf="isFormControlError('pillName')" class="errors">Pill name required</p>
+
+        <div class="label-input">
+            <label for="startDate">Start date</label>
+            <input type="date" name="startDate" required formControlName="startDate">
+        </div>
+        <p *ngIf="isFormControlError('startDate')" class="errors">Start date required</p>
+
+        <div class="label-input">
+            <label for="endDate">End date</label>
+            <input type="date" name="endDate" required formControlName="endDate">
+        </div>
+        <p *ngIf="isFormControlError('endDate')" class="errors">End date required</p>
+
+        <div class="label-input">
+            <label for="frequency">Frequency</label>
+            <select name="frequency" formControlName="frequency">
+                <option value="Daily">Daily</option>
+                <option value="Alternatively">Alternatively</option>
+            </select>
+        </div>
+        <p *ngIf="isFormControlError('frequency')" class="errors">Frequency required</p>
+
+        <div class="label-input">
+            <label for="timing">Timing</label>
+            <input type="time" name="timing" required formControlName="timing">
+        </div>
+        <p *ngIf="isFormControlError('timing')" class="errors">Timing required</p>
+
+        <div class="label-input">
+            <label for="beforeAfterMeal">Before/After meal</label>
+            <select name="beforeOrAfterMeal" formControlName="beforeAfterMeal">
+                <option value="Before">Before</option>
+                <option value="After">After</option>
+            </select>
+        </div>
+        <p *ngIf="isFormControlError('beforeAfterMeal')" class="errors">Before or After Meal information required</p>
+
+        <div class="label-input">
+            <label for="quantityYouHave">Quantity you have</label>
+            <input type="text" name="quantityYouHave" required formControlName="quantityYouHave">
+        </div>
+        <p *ngIf="isFormControlError('quantityYouHave')" class="errors">Quantity you have required</p>
+
+        <div class="label-input">
+            <label for="description">Description</label>
+            <input type="description" name="description" required formControlName="description">
+        </div>
+
+        <button type="submit" [disabled]="addPill.invalid">{{ buttonText }}</button>
+    </form>
+</div>
