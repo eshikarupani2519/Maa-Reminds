@@ -78,20 +78,30 @@ router.get('/:appointmentId', getUserIdFromToken, async (req, res) => {
 router.patch('/:appointmentId', getUserIdFromToken, async (req, res) => {
   try {
     const updatedAppointmentData = req.body;
+
+    // Make sure _id is not overwritten
+    delete updatedAppointmentData._id;
+
     const updatedUser = await User.findOneAndUpdate(
       { _id: req.userId, 'appointments._id': req.params.appointmentId },
-      { $set: { 'appointments.$': updatedAppointmentData } },
+      { $set: Object.fromEntries(
+          Object.entries(updatedAppointmentData).map(([k,v]) => [`appointments.$.${k}`, v])
+        )
+      },
       { new: true, runValidators: true }
     );
+
     if (!updatedUser) {
       return res.status(404).json({ message: 'Appointment or User not found.' });
     }
+
     res.status(200).json({ message: 'Appointment updated successfully.', user: updatedUser });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error.', error: error.message });
   }
 });
+
 
 // DELETE APPOINTMENT ROUTE
 router.delete('/:appointmentId', getUserIdFromToken, async (req, res) => {

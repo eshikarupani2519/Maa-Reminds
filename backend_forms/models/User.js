@@ -6,7 +6,7 @@ const pillSchema = new mongoose.Schema({
   frequency: { type: String, required: true },
   timing: { type: String, required: true },
   beforeAfterMeal: { type: String, required: true },
-  quantityYouHave: { type: Number, required: true },
+  quantityYouHave: { type: Number },
   description: { type: String, required: false }
 });
 
@@ -25,34 +25,13 @@ const userSchema = new mongoose.Schema({
   age: { type: Number, required: true },
   familyMemberName: { type: String },
   familyMemberPhone: { type: String },
-  pills: [pillSchema]
+  otp:{ type: String },
+  appointments: [appointmentSchema],
+  pills: [pillSchema],
+  resetToken: String,
+resetTokenExpiry: Date,
+
 });
-
-// module.exports = mongoose.model("User", userSchema);
-
-// Example of your current user schema
-// const mongoose = require('mongoose');
-
-// const userSchema = new mongoose.Schema({
-//   // ... other user fields like name, email, password, etc.
-// });
-
-// UPDATED schema with pills array
-// const pillSchema = new mongoose.Schema({
-//   pillName: { type: String, required: true },
-//   startDate: { type: Date, required: true },
-//   endDate: { type: Date, required: true },
-//   frequency: { type: String, required: true },
-//   timing: { type: String, required: true },
-//   beforeAfterMeal: { type: String, required: true },
-//   quantityYouHave: { type: Number, required: true },
-//   description: { type: String, required: false }
-// });
-
-// const userSchema = new mongoose.Schema({
-//   // ... other user fields like name, email, password, etc.
-//   pills: [pillSchema] // Add this line
-// });
 
 const User = mongoose.model('User', userSchema);
 
