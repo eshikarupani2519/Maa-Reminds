@@ -121,4 +121,60 @@ router.delete('/:appointmentId', getUserIdFromToken, async (req, res) => {
   }
 });
 
+// router.get('/history/all', getUserIdFromToken, async (req, res) => {
+//   try {
+//     const user = await User.findById(req.userId).select('appointmentHistory');
+//     if (!user) return res.status(404).json({ message: 'User not found.' });
+
+//     res.status(200).json(user.appointmentHistory);
+//   } catch (error) {
+//     res.status(500).json({ message: 'Server error', error: error.message });
+//   }
+// });
+router.get('/history/all', getUserIdFromToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    const now = new Date();
+    let hasMoved = false;
+
+    const activeAppointments = [];
+
+    for (let appt of user.appointments) {
+
+      // Proper date-time merge
+      const appointmentDate = new Date(appt.date);
+      const [hours, minutes] = appt.time.split(':');
+
+      appointmentDate.setHours(parseInt(hours));
+      appointmentDate.setMinutes(parseInt(minutes));
+
+      if (appointmentDate < now) {
+        user.appointmentHistory.push(appt);
+        hasMoved = true;
+      } else {
+        activeAppointments.push(appt);
+      }
+    }
+
+    if (hasMoved) {
+      user.appointments = activeAppointments;
+      await user.save();
+    }
+
+    res.status(200).json(user.appointmentHistory);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Server error occurred",
+      error: error.message
+    });
+  }
+});
+
 module.exports = router;

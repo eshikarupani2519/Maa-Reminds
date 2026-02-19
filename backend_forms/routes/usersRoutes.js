@@ -121,34 +121,31 @@ router.get('/pills', async (req, res) => {
     }
 
     // Find the user by ID and select only the 'pills' field
-    const user = await User.findById(userId).select('pills');
+    // const user = await User.findById(userId).select('pills');
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
 
-    res.status(200).json(user.pills);
+    const user = await User.findById(userId);
+
+if (!user) {
+  return res.status(404).json({ message: 'User not found.' });
+}
+
+await checkAndMoveExpiredData(user);
+
+res.status(200).json(user.pills);
+
+    // if (!user) {
+    //   return res.status(404).json({ message: 'User not found.' });
+    // }
+
+    // res.status(200).json(user.pills);
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error.', error: error.message });
   }
 });
-// //get a single pill
-// router.get('/:pillId', getUserIdFromToken, async (req, res) => {
-//   try {
-//     const user = await User.findById(req.userId);
-//     if (!user) return res.status(404).json({ message: 'User not found' });
 
-//     const pill = user.pills.find(p => p._id.toString() === req.params.pillId);
-//     if (!pill) return res.status(404).json({ message: 'Pill not found' });
-
-//     res.status(200).json(pill);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: 'Server error', error: err.message });
-//   }
-// });
 router.delete('/pills/:pillId', async (req, res) => {
   try {
     const token = req.headers.authorization;
@@ -183,54 +180,6 @@ router.delete('/pills/:pillId', async (req, res) => {
     res.status(500).json({ message: 'Server error.', error: error.message });
   }
 });
-
-
-// router.delete('/pills/:pillId', async (req, res) => {
-//   try {
-//     console.log("in delete route");
-//     const token = req.headers.authorization;
-//     if (!token) {
-//       return res.status(401).json({ message: 'Authorization token not found.' });
-//     }
-
-//     const tokenValue = token.split(' ')[1];
-
-//     let userId;
-//     try {
-//       const decodedToken = jwt.verify(tokenValue, jwtSecret);
-//       userId = decodedToken.id; 
-//     } catch (error) {
-//       return res.status(401).json({ message: 'Invalid or expired token.' });
-//     }
-
-//     const { pillId } = req.params;
-//     // console.log(id);
-//     console.log("Received request to delete pill ID:", pillId, "for user ID:", userId);
-
-//     // Use $pull to remove the pill with the specified _id from the pills array
-//     const updatedUser = await User.findByIdAndUpdate(
-//       userId,
-//       { $pull: { pills: { _id: pillId } } },
-//       { new: true } // Return the updated document
-//     );
-
-//     if (!updatedUser) {
-//       return res.status(404).json({ message: 'User not found.' });
-//     }
-
-//     // Check if a pill was actually removed
-//     const wasPillRemoved = updatedUser.pills.some(p => p._id.toString() === pillId);
-//     if (!wasPillRemoved) {
-//         return res.status(404).json({ message: 'Pill not found for this user.' });
-//     }
-
-//     res.status(200).json({ message: 'Pill deleted successfully.' });
-
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Server error.', error: error.message });
-//   }
-// });
 
 router.get('/pills/:pillId', async (req, res) => {
   console.log("in get single pill");
@@ -287,16 +236,128 @@ try {
     }
 
     const user = await User.findById(userId).select('appointments');
+    // const user = await User.findById(userId);
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
+if (!user) {
+  return res.status(404).json({ message: 'User not found.' });
+}
 
-    res.status(200).json(user.appointments);
+await checkAndMoveExpiredData(user);
+
+res.status(200).json(user.appointments);
+
+
+    // if (!user) {
+    //   return res.status(404).json({ message: 'User not found.' });
+    // }
+
+    // res.status(200).json(user.appointments);
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error.', error: error.message });
   }
 });
+
+const checkAndMoveExpiredData = async (user) => {
+  const now = new Date();
+
+  // ---------- PILLS ----------
+  const activePills = [];
+
+  for (let pill of user.pills) {
+    const endDate = new Date(pill.endDate);
+
+    if (endDate < now) {
+      user.medicineHistory.push(pill);
+    } else {
+      activePills.push(pill);
+    }
+  }
+
+  user.pills = activePills;
+
+  // ---------- APPOINTMENTS ----------
+  const activeAppointments = [];
+
+  for (let appt of user.appointments) {
+    const apptDateTime = new Date(`${appt.date}T${appt.time}`);
+
+    if (apptDateTime < now) {
+      user.appointmentHistory.push(appt);
+    } else {
+      activeAppointments.push(appt);
+    }
+  }
+
+  user.appointments = activeAppointments;
+
+  await user.save();
+};
+router.get('/medicine-history', getUserIdFromToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    const now = new Date();
+    let hasMoved = false;
+
+    const activePills = [];
+
+    for (let pill of user.pills) {
+      const endDate = new Date(pill.endDate);
+
+      // If pill expired → move to medicineHistory
+      if (endDate < now) {
+        user.medicineHistory.push(pill);
+        hasMoved = true;
+      } else {
+        activePills.push(pill);
+      }
+    }
+
+    // Update pills array
+    if (hasMoved) {
+      user.pills = activePills;
+      await user.save();
+    }
+
+    res.status(200).json(user.medicineHistory);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Server error occurred",
+      error: error.message
+    });
+  }
+});
+
+router.get('/missed-dosages', getUserIdFromToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select('missedDosages');
+    if (!user) return res.status(404).json({ message: 'User not found.' });
+
+    res.status(200).json(user.missedDosages);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+router.get('/missed-dosages', getUserIdFromToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select('missedDosages');
+    if (!user) return res.status(404).json({ message: 'User not found.' });
+
+    res.status(200).json(user.missedDosages);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+
+
 module.exports = router;
