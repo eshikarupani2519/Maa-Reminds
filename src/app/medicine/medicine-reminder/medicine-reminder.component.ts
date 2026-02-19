@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { PillsService } from '../pills.service'; // <-- Import the service
 
 @Component({
-  selector: 'app-medicine-reminder',
-  templateUrl: './medicine-reminder.component.html',
-  styleUrls: ['./medicine-reminder.component.css']
+ selector: 'app-medicine-reminder',
+  templateUrl: './medicine-reminder.component.html',
+  styleUrls: ['./medicine-reminder.component.css']
 })
 export class MedicineReminderComponent implements OnInit { // <-- Implement OnInit
   
@@ -43,11 +43,11 @@ export class MedicineReminderComponent implements OnInit { // <-- Implement OnIn
     );
   }
 
-  addPill(){
-    this.router.navigate(['add-medicine'])
-  }
+  addPill(){
+    this.router.navigate(['add-medicine'])
+  }
 
   // The id is now the MongoDB _id
- 
+ 
 
 }

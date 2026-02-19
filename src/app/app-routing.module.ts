@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:'register',component:RegisterComponent},
 
 {path:'profile',component:ProfileComponent},
-  {path:'forgotPW',component:ForgotPWComponent},
+  {path:'forgotPW/:token',component:ForgotPWComponent},
   {path:'dashboard',component:DashboardComponent},
   {path:'medicine-reminder',component:MedicineReminderComponent},
 
@@ -49,7 +49,9 @@ const routes: Routes = [
   {path:'medicine-history',component:MedicineHistoryComponent},
   {path:'medicine-stock',component:MedicineStockComponent},
   {path:'missed-dosage',component:MissedDosageComponent}
-,{path:'add-medicine/:id',component:AddMedicineComponent}
+,{path:'add-medicine/:id',component:AddMedicineComponent},
+{ path: 'add-appointment/:id', component: AddAppointmentComponent }
+
 ];
 
 @NgModule({

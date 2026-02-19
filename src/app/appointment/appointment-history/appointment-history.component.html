@@ -2,20 +2,32 @@
   <div class="header">
     <h1>Appointment History</h1>
 
-    <button class="rtn-to-dashboard" (click)="goToDashboard()">Return to Dashboard</button>
-
+    <button class="rtn-to-dashboard" (click)="goToDashboard()">
+      Return to Dashboard
+    </button>
   </div>
 
   <div class="cards-container">
     <div class="card" *ngFor="let appointment of appointments">
       <div class="card-content">
         <div>
-          <h3>{{ appointment.name }}</h3>
-          <p>{{ appointment.time }}</p>
-          <p>Date:{{appointment.date}}</p>
+          <h3>{{ appointment.doctorName }}</h3>
+
+          <p><strong>Time:</strong> {{ appointment.time }}</p>
+
+          <p>
+            <strong>Date:</strong>
+            {{ appointment.date | date:'mediumDate' }}
+          </p>
+
+          <p>
+            <strong>Notes:</strong>
+            {{ appointment.notes }}
+          </p>
         </div>
+
         <div class="right">
-        <div class="arrow">➔</div>
+          <div class="arrow">➔</div>
         </div>
       </div>
     </div>

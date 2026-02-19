@@ -57,7 +57,7 @@ export class AddMedicineComponent implements OnInit { // <-- IMPLEMENTED OnInit
         error: (err) => {
           console.error('Error fetching pill for edit:', err);
           alert('Could not load pill data.');
-          this.router.navigate(['/medicine-reminders']);
+          this.router.navigate(['/medicine-reminder']);
         }
       });
     }
@@ -93,7 +93,7 @@ export class AddMedicineComponent implements OnInit { // <-- IMPLEMENTED OnInit
         this.pillService.addPill(this.addPill.value as AddPillFormValue).subscribe({
           next: (response) => {
             console.log('Pill added successfully', response);
-            this.router.navigate(['/medicine-reminders']);
+            this.router.navigate(['/medicine-reminder']);
           },
           error: (error) => {
             console.error('Error adding pill', error);

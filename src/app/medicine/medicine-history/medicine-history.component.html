@@ -1,4 +1,4 @@
-<div class="dashboard-container">
+<!-- <div class="dashboard-container">
   <div class="header">
     <h1>Medicine History</h1>
 
@@ -17,6 +17,35 @@
         <div class="right">
             <div><button>Repeat Dosage</button></div>
         <div class="arrow">➔</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="dashboard-container">
+  <div class="header">
+    <h1>Medicine History</h1>
+
+    <button class="rtn-to-dashboard" (click)="goToDashboard()">
+      Return to Dashboard
+    </button>
+  </div>
+
+  <div class="cards-container">
+    <div class="card" *ngFor="let med of meds">
+      <div class="card-content">
+        <div>
+          <h3>{{ med.pillName }}</h3>
+          <p><strong>Time:</strong> {{ med.timing }}</p>
+          <p><strong>Start:</strong> {{ med.startDate | date }}</p>
+          <p><strong>End:</strong> {{ med.endDate | date }}</p>
+          <p><strong>Frequency:</strong> {{ med.frequency }}</p>
+          <p><strong>Meal:</strong> {{ med.beforeAfterMeal }}</p>
+        </div>
+
+        <div class="right">
+          <div><button>Repeat Dosage</button></div>
+          <div class="arrow">➔</div>
         </div>
       </div>
     </div>

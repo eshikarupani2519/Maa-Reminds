@@ -1,19 +1,44 @@
 <div class="forgot-password-container">
-  
-  <form [formGroup]="forgotPWForm" class="login-form" (ngSubmit)="submitForm()">
-    <h2 class="form-title">Forgot Password</h2>
-    <div class="label-input">
-      <label>Email</label>
-      <input type="text" placeholder="Enter email" formControlName="email" />
-    </div>
-    <p *ngIf="isEmailValid('email')" class="errors">Email should be valid</p>
-    <p *ngIf="isEmailRequired('email')" class="errors">Email required</p>
 
+  <form [formGroup]="forgotPWForm"
+        class="login-form"
+        (ngSubmit)="submitForm()">
+
+    <h2 class="form-title">Reset Password</h2>
+
+    <!-- New Password -->
     <div class="label-input">
       <label>New Password</label>
-      <input type="password" placeholder="Enter new password" formControlName="newPassword" />
+      <input type="password"
+             placeholder="Enter new password"
+             formControlName="newPassword" />
     </div>
 
-    <button type="submit" [disabled]="forgotPWForm.invalid">Reset Password</button>
+    <p *ngIf="forgotPWForm.get('newPassword')?.invalid 
+              && forgotPWForm.get('newPassword')?.touched"
+       class="errors">
+       Password must be at least 6 characters
+    </p>
+
+    <!-- Confirm Password -->
+    <div class="label-input">
+      <label>Confirm Password</label>
+      <input type="password"
+             placeholder="Confirm new password"
+             formControlName="confirmPassword" />
+    </div>
+
+    <p *ngIf="!passwordsMatch() 
+              && forgotPWForm.get('confirmPassword')?.touched"
+       class="errors">
+       Passwords do not match
+    </p>
+
+    <button type="submit"
+            [disabled]="forgotPWForm.invalid || !passwordsMatch()">
+      Reset Password
+    </button>
+
   </form>
+
 </div>

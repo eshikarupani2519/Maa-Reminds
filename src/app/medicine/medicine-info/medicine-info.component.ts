@@ -44,6 +44,7 @@ export class MedicineInfoComponent implements OnInit {
   }
 
   deleteMedicine(id: any) {
+    console.log('Delete clicked for ID:', id);
     if (confirm('Are you sure you want to delete this medicine?')) {
       this.pillsService.deletePill(id).subscribe({
         next: (response) => {
