@@ -1,4 +1,4 @@
-<div class="dashboard-container">
+<!-- <div class="dashboard-container">
   <div class="header">
     <h1>Medicine History</h1>
 
@@ -17,6 +17,59 @@
         <div class="right">
             <div><button>Repeat Dosage</button></div>
         <div class="arrow">➔</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="dashboard-container">
+  <div class="header">
+    <div class="header-content">
+      <div class="header-title">
+        <div class="header-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h1>Medicine History</h1>
+      </div>
+      <button class="dashboard-btn" (click)="goToDashboard()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        <span>Dashboard</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="cards-container">
+    <div class="card" *ngFor="let med of meds">
+      <div class="card-content">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.5 20.5l10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
+          </svg>
+        </div>
+        <div class="card-details">
+          <h3>{{ med.pillName }}</h3>
+          <p><strong>Time:</strong> {{ med.timing }}</p>
+          <p><strong>Start:</strong> {{ med.startDate | date }}</p>
+          <p><strong>End:</strong> {{ med.endDate | date }}</p>
+          <p><strong>Frequency:</strong> {{ med.frequency }}</p>
+          <p><strong>Meal:</strong> {{ med.beforeAfterMeal }}</p>
+        </div>
+        <div class="card-actions">
+          <button class="repeat-btn">Repeat Dosage</button>
+          <div class="card-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>

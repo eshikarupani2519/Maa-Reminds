@@ -1,24 +1,72 @@
 <div class="profile-wrapper">
-    <h2>PROFILE</h2>
+  <div class="profile-header">
+    <h2>My Profile</h2>
+    <p>Manage your account settings</p>
+  </div>
+
   <div class="profile-card">
-    <p><strong>Name:</strong> {{ name }}</p>
-    <p><strong>Email:</strong> {{ email }}</p>
-    <p><strong>Age:</strong> {{ age }}</p>
+    <div class="profile-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </div>
+    <div class="profile-info">
+      <div class="info-item">
+        <div class="info-label">Name</div>
+        <div class="info-value">{{ name }}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Email</div>
+        <div class="info-value">{{ email }}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Age</div>
+        <div class="info-value">{{ age }}</div>
+      </div>
+    </div>
   </div>
 
   <div class="feedback-section">
-    <h3>Share Your Feedback</h3>
-
-    <input type="text" placeholder="Your name" [(ngModel)]="feedbackName" name="feedbackName" required/>
-
-    <div class="rating-stars">
-      <span *ngFor="let star of [1, 2, 3, 4, 5]"class="star" [class.selected]="rating >= star" (click)="setRating(star)">
-        ★
-      </span>
+    <div class="feedback-header">
+      <div class="feedback-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <h3>Share Your Feedback</h3>
+      <p>Help us improve your experience</p>
     </div>
 
-    <textarea placeholder="Write your feedback..." [(ngModel)]="feedback" name="feedback" rows="4" required></textarea>
+    <div class="feedback-form">
+      <div class="form-group">
+        <label for="feedbackName">Your Name</label>
+        <input type="text" id="feedbackName" placeholder="Enter your name" [(ngModel)]="feedbackName" name="feedbackName" required/>
+      </div>
 
-    <button (click)="submitFeedback()">Submit Feedback</button>
+      <div class="form-group">
+        <label>Rating</label>
+        <div class="rating-stars">
+          <span *ngFor="let star of [1, 2, 3, 4, 5]" class="star" [class.selected]="rating >= star" (click)="setRating(star)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="feedback">Your Feedback</label>
+        <textarea id="feedback" placeholder="Write your feedback..." [(ngModel)]="feedback" name="feedback" rows="4" required></textarea>
+      </div>
+
+      <button class="submit-btn" (click)="submitFeedback()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+        <span>Submit Feedback</span>
+      </button>
+    </div>
   </div>
 </div>

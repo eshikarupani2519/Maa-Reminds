@@ -1,74 +1,243 @@
-.reg-form{
-    display: flex;
-    flex-direction: column;
-    justify-content:space-around;
-    height: 90vh;
-    width:400px;
-    margin: auto;
-    background-color: #e6f1fb;
-  padding: 3rem 2.5rem;
-  border-radius: 1rem;
-  
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+/* .register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  padding: var(--spacing-4);
+} */
+
+/* .register-card {
+  background-color: var(--white);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--spacing-8);
+  animation: fadeInUp 0.6s ease-out;
+} */
+
+.register-card {
+  position: relative;
+  z-index: 2;
+
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+
+  overflow-y: auto;
+  padding: var(--spacing-8);
 }
-input,[type="radio"]{
-    border: 1px solid rgb(26, 129, 231);
-    border-radius: 4px;
-    height: 1.2rem;
-    padding: 0.2rem;
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+  padding: var(--spacing-4);
+
+  background-image: url('../../../assets/doctor-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  overflow: hidden;
 }
-.label-input{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.register-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  z-index: 1;
 }
-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 90vh;
-    font-size: 0.9em;
+
+.register-header {
+  text-align: center;
+  margin-bottom: var(--spacing-8);
 }
+
+.register-icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--primary-light);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-4);
+  color: var(--primary-color);
+}
+
+.register-header h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--spacing-2);
+}
+
+.register-header p {
+  font-size: var(--font-size-base);
+  color: var(--gray-500);
+  margin: 0;
+}
+
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
 }
 
-label {
-  margin-bottom: 6px;
-  font-weight: 500;
-  color: #333;
+.form-group label {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--gray-700);
+  margin-bottom: var(--spacing-2);
 }
 
-input {
-  padding: 10px;
-  border: 1px solid #1a81e7;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+.form-group input {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-fast);
+  background-color: var(--gray-50);
 }
 
-input:focus {
-  border-color: #0b6cd4;
+.form-group input:focus {
   outline: none;
-  box-shadow: 0 0 4px rgba(26, 129, 231, 0.4);
+  border-color: var(--primary-color);
+  background-color: var(--white);
+  box-shadow: 0 0 0 4px var(--primary-light);
 }
-label{
-    margin-right: 5px;
-    text-wrap: wrap;
+
+.form-group input::placeholder {
+  color: var(--gray-400);
 }
-button{
-    height: 2rem;
-    background-color: rgb(26, 129, 231); 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    
+
+.form-group .errors {
+  color: var(--error-color);
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-1);
+  margin-bottom: 0;
 }
-.errors{
-    margin: 0;
-    border-radius: 0.2rem;
-   color:red;
-   
+
+.otp-btn {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--secondary-color);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.otp-btn:hover {
+  background-color: #0891b2;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: var(--spacing-4);
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  box-shadow: var(--shadow-md);
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.submit-btn:disabled {
+  background-color: var(--gray-300);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.register-footer {
+  margin-top: var(--spacing-8);
+  text-align: center;
+  padding-top: var(--spacing-6);
+  border-top: 1px solid var(--gray-200);
+}
+
+.register-footer p {
+  font-size: var(--font-size-sm);
+  color: var(--gray-500);
+  margin: 0;
+}
+
+.login-link {
+  color: var(--primary-color);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.login-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .register-card {
+    padding: var(--spacing-6);
+    max-height: 100vh;
+  }
+
+  .register-header h2 {
+    font-size: var(--font-size-2xl);
+  }
 }

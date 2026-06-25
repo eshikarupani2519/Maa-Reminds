@@ -9,6 +9,7 @@ export class RegisterService {
 private apiUrl = 'http://localhost:5000/api/auth/register';
 
   constructor(private http: HttpClient) {}
+  // constructor(private router: Router) {}
 
   registerUser(userData: any): Observable<any> {
     return this.http.post(this.apiUrl, userData);
@@ -19,8 +20,12 @@ loginUser(credentials: any): Observable<any> {
 forgotPassword(data: any): Observable<any> {
   return this.http.post("http://localhost:5000/api/auth/forgot-password", data);
 }
+
 findUserById(id:string){
   console.log("service pe toh aaya");
   return this.http.get(`http://localhost:5000/api/auth/user/${id}` );
+}
+ sendOtp(data: any) {
+  return this.http.post('http://localhost:5000/api/auth/send-otp', data);
 }
 }

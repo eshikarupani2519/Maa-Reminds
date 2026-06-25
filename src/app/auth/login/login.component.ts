@@ -201,7 +201,9 @@ export class LoginComponent {
       this.loginForm.get(name)?.errors?.['required']
     );
   }
-
+navigateToPage(page: string) {
+  this.router.navigate([page]);
+}
   submitForm() {
     console.log('Login button clicked! ✅');
     console.log('Form Data:', this.loginForm.value);

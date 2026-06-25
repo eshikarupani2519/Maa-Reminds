@@ -39,4 +39,17 @@ export class AppointmentService {
     const headers = this.getAuthHeaders();
     return this.http.delete(`${this.apiUrl}/${id}`, { headers });
   }
+  getAppointmentHistory(): Observable<any> {
+  const token = localStorage.getItem('token');
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.get(
+    'http://localhost:5000/api/appointments/history/all',
+    { headers }
+  );
+}
+
 }

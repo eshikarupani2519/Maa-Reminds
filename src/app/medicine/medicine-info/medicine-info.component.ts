@@ -18,6 +18,10 @@ export class MedicineInfoComponent implements OnInit {
     private pillsService: PillsService 
   ) {}
 
+    goToDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
+
   ngOnInit(): void {
     // Get the pill ID from the URL parameters
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -44,6 +48,7 @@ export class MedicineInfoComponent implements OnInit {
   }
 
   deleteMedicine(id: any) {
+    console.log('Delete clicked for ID:', id);
     if (confirm('Are you sure you want to delete this medicine?')) {
       this.pillsService.deletePill(id).subscribe({
         next: (response) => {

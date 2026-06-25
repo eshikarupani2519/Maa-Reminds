@@ -10,7 +10,9 @@ import { RegisterService } from '../register.service';
 export class ProfileComponent {
   user:any;name?:string;email?:string;age?:number;
 
-  id:string=(localStorage.getItem("user") || "");
+  // id:string=(localStorage.getItem("user") || "");
+  id: string = (localStorage.getItem("user") || "").replace(/"/g, "");
+
   
   constructor(private router: Router,private registerService:RegisterService) {
 

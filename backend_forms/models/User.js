@@ -1,4 +1,44 @@
+// const mongoose = require("mongoose");
+// const pillSchema = new mongoose.Schema({
+//   pillName: { type: String, required: true },
+//   startDate: { type: Date, required: true },
+//   endDate: { type: Date, required: true },
+//   frequency: { type: String, required: true },
+//   timing: { type: String, required: true },
+//   beforeAfterMeal: { type: String, required: true },
+//   quantityYouHave: { type: Number },
+//   description: { type: String, required: false }
+// });
+
+// const appointmentSchema = new mongoose.Schema({
+//   doctorName: { type: String, required: true },
+//   date: { type: Date, required: true },
+//   time: { type: String, required: true },
+//   notes: { type: String },
+// });
+
+// const userSchema = new mongoose.Schema({
+//   email: { type: String, required: true, unique: true },
+//   phone: { type: Number, required: true },
+//   fullName: { type: String, required: true },
+//   password: { type: String, required: true },
+//   age: { type: Number, required: true },
+//   familyMemberName: { type: String },
+//   familyMemberPhone: { type: String },
+//   otp:{ type: String },
+//   appointments: [appointmentSchema],
+//   pills: [pillSchema],
+//   resetToken: String,
+// resetTokenExpiry: Date,
+
+// });
+
+// const User = mongoose.model('User', userSchema);
+
+// module.exports = User;
+
 const mongoose = require("mongoose");
+
 const pillSchema = new mongoose.Schema({
   pillName: { type: String, required: true },
   startDate: { type: Date, required: true },
@@ -6,8 +46,18 @@ const pillSchema = new mongoose.Schema({
   frequency: { type: String, required: true },
   timing: { type: String, required: true },
   beforeAfterMeal: { type: String, required: true },
-  quantityYouHave: { type: Number, required: true },
-  description: { type: String, required: false }
+  quantityYouHave: { type: Number },
+  description: { type: String },
+  responseStatus: {
+    type: String,
+    default: 'pending'
+},
+
+
+  //now new
+   lastNotificationSentDate: { type: Date,default:null },
+  responseStatus: { type: String, default: null }, // pending / yes / no / missed
+  responseDeadline: { type: Date }
 });
 
 const appointmentSchema = new mongoose.Schema({
@@ -15,6 +65,8 @@ const appointmentSchema = new mongoose.Schema({
   date: { type: Date, required: true },
   time: { type: String, required: true },
   notes: { type: String },
+  //new
+  lastNotificationSentDate: { type: Date }
 });
 
 const userSchema = new mongoose.Schema({
@@ -25,35 +77,17 @@ const userSchema = new mongoose.Schema({
   age: { type: Number, required: true },
   familyMemberName: { type: String },
   familyMemberPhone: { type: String },
-  pills: [pillSchema]
+  otp:{ type: String },
+  appointments: [appointmentSchema],
+  pills: [pillSchema],
+  missedDosages: [pillSchema],
+  medicineHistory: [pillSchema],
+  appointmentHistory: [appointmentSchema],
+  resetToken: String,
+  resetTokenExpiry: Date,
+  //new
+   familyAlertSent: { type: Boolean, default: false }
 });
 
-// module.exports = mongoose.model("User", userSchema);
-
-// Example of your current user schema
-// const mongoose = require('mongoose');
-
-// const userSchema = new mongoose.Schema({
-//   // ... other user fields like name, email, password, etc.
-// });
-
-// UPDATED schema with pills array
-// const pillSchema = new mongoose.Schema({
-//   pillName: { type: String, required: true },
-//   startDate: { type: Date, required: true },
-//   endDate: { type: Date, required: true },
-//   frequency: { type: String, required: true },
-//   timing: { type: String, required: true },
-//   beforeAfterMeal: { type: String, required: true },
-//   quantityYouHave: { type: Number, required: true },
-//   description: { type: String, required: false }
-// });
-
-// const userSchema = new mongoose.Schema({
-//   // ... other user fields like name, email, password, etc.
-//   pills: [pillSchema] // Add this line
-// });
-
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;

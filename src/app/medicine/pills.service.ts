@@ -55,4 +55,32 @@ export class PillsService {
     });
     return this.http.patch(`${this.apiUrl}/pills/${pillId}`, updatedPillData, { headers });
   }
+  getMedicineHistory(): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.get(`${this.apiUrl}/medicine-history`, { headers });
+}
+
+getMissedDosages(): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.get(`${this.apiUrl}/missed-dosages`, { headers });
+}
+getMissedAppointments(): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.get(`${this.apiUrl}/history/all`, { headers });
+}
 }
