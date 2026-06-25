@@ -1,13 +1,59 @@
-.login-container {
+/* .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   padding: var(--spacing-4);
+} */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+  padding: var(--spacing-4);
+
+  background-image: url('../../../assets/doctor-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.login-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  z-index: 1;
 }
 
 .login-card {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 440px;
+
+  padding: var(--spacing-10);
+
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* .login-card {
   background-color: var(--white);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-xl);
@@ -15,7 +61,7 @@
   max-width: 440px;
   padding: var(--spacing-10);
   animation: fadeInUp 0.6s ease-out;
-}
+} */
 
 .login-header {
   text-align: center;
