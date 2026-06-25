@@ -72,6 +72,10 @@ export class AddMedicineComponent implements OnInit { // <-- IMPLEMENTED OnInit
     return !!(control?.errors?.['required'] && control?.dirty);
   }
 
+    goToDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
+
   // DELETED: Removed the irrelevant checkPassword method.
 
   // UPDATED: The onSubmit method now handles both add and update

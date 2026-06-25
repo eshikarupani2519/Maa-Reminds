@@ -116,6 +116,9 @@ export class ForgotPWComponent {
     return this.forgotPWForm.value.newPassword ===
            this.forgotPWForm.value.confirmPassword;
   }
+  navigateToPage(page: string) {
+  this.router.navigate([page]);
+}
 
   submitForm() {
 

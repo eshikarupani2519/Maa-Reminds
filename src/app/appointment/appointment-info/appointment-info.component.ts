@@ -33,6 +33,9 @@ export class AppointmentInfoComponent implements OnInit {
   editAppointment(id: string): void {
     this.router.navigate(['/add-appointment', id]);
   }
+    goToDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
 
   deleteAppointment(id: string): void {
     if (confirm('Are you sure you want to delete this appointment?')) {

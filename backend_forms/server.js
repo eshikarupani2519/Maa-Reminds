@@ -17,9 +17,10 @@ connectDB();
 app.use(cors({ origin: "http://localhost:4200" }));
 // app.use(cors());
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", usersRoutes);
 // app.use('/api/users/pills', require('./routes/pillRoutes'));
 app.use('/api/appointments', appointmentRoutes);
-app.listen(5000, () => console.log("Server running "));
+app.listen(5000, () => console.log("Server running on port 5000"));

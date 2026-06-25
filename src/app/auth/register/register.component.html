@@ -1,73 +1,106 @@
 
-<div>
-  
-
-  <form class="reg-form" [formGroup]="regFormGroup" (ngSubmit)="submitData()">
-    <h2 class="text-primary text-center my-2">Register</h2>
-    
-    <!-- Email -->
-    <div class="label-input">
-      <label for="email">Email</label>
-      <input id="email" type="email" formControlName="email" required />
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <div class="register-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="8.5" cy="7" r="4"/>
+          <line x1="20" y1="8" x2="20" y2="14"/>
+          <line x1="23" y1="11" x2="17" y2="11"/>
+        </svg>
+      </div>
+      <h2>Create Account</h2>
+      <p>Start your health journey today</p>
     </div>
-    <p *ngIf="getFormControl('email')?.dirty && getFormControl('email')?.touched && getFormControl('email')?.errors?.['email']" class="errors">
-      Invalid email
-    </p>
-    <p *ngIf="isFormControlError('email')" class="errors">Email is required</p>
 
-    <!-- Phone -->
-    <div class="label-input">
-      <label for="phone">Phone No.</label>
-      <input id="phone" type="text" formControlName="phone" required />
+    <form class="reg-form" [formGroup]="regFormGroup" (ngSubmit)="submitData()">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" placeholder="Enter your email" required />
+        <p *ngIf="getFormControl('email')?.dirty && getFormControl('email')?.touched && getFormControl('email')?.errors?.['email']" class="errors">
+          Invalid email
+        </p>
+        <p *ngIf="isFormControlError('email')" class="errors">Email is required</p>
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input id="phone" type="text" formControlName="phone" placeholder="Enter your phone number" required />
+        <p *ngIf="isFormControlError('phone')" class="errors">Phone number is required</p>
+      </div>
+
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" type="text" formControlName="fullName" placeholder="Enter your full name" required />
+        <p *ngIf="isFormControlError('fullName')" class="errors">Full name is required</p>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" placeholder="Create a password" required />
+        <p *ngIf="isFormControlError('password')" class="errors">Password is required</p>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm your password" required />
+        <p *ngIf="isFormControlError('confirmPassword')" class="errors">Confirmation required</p>
+        <p *ngIf="checkPassword()" class="errors">Passwords don't match</p>
+      </div>
+
+      <!-- Age -->
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input id="age" type="text" formControlName="age" placeholder="Enter your age" required />
+        <p *ngIf="isFormControlError('age')" class="errors">Age is required</p>
+      </div>
+
+      <!-- Family Member Name -->
+      <div class="form-group">
+        <label for="familyMemberName">Family Member Name</label>
+        <input id="familyMemberName" type="text" formControlName="familyMemberName" placeholder="Enter family member name" required />
+        <p *ngIf="isFormControlError('familyMemberName')" class="errors">Family member name is required</p>
+      </div>
+
+      <!-- Family Member Phone -->
+      <div class="form-group">
+        <label for="familyMemberPhone">Family Member Phone</label>
+        <input id="familyMemberPhone" type="text" formControlName="familyMemberPhone" placeholder="Enter family member phone" required />
+        <p *ngIf="isFormControlError('familyMemberPhone')" class="errors">Family member phone is required</p>
+      </div>
+
+      <button type="button" class="otp-btn" (click)="sendOtp()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="16" x="2" y="4" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        <span>Send OTP</span>
+      </button>
+
+      <div class="form-group">
+        <label for="otp">Enter OTP</label>
+        <input id="otp" type="text" formControlName="otp" placeholder="Enter the OTP sent to your phone" required />
+        <p *ngIf="isFormControlError('otp')" class="errors">OTP is required</p>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn" [disabled]="regFormGroup.invalid || usernameError">
+        <span>Create Account</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+    </form>
+
+    <div class="register-footer">
+      <p>Already have an account? <a (click)="navigateToPage('login')" class="login-link">Sign in</a></p>
     </div>
-    <p *ngIf="isFormControlError('phone')" class="errors">Phone number is required</p>
-
-    <!-- Full Name -->
-    <div class="label-input">
-      <label for="fullName">Full Name</label>
-      <input id="fullName" type="text" formControlName="fullName" required />
-    </div>
-    <p *ngIf="isFormControlError('fullName')" class="errors">Full name is required</p>
-
-    
-  
-    <!-- Password -->
-    <div class="label-input">
-      <label for="password">Password</label>
-      <input id="password" type="password" formControlName="password" required />
-    </div>
-    <p *ngIf="isFormControlError('password')" class="errors">Password is required</p>
-
-    <!-- Confirm Password -->
-    <div class="label-input">
-      <label for="confirmPassword">Confirm Password</label>
-      <input id="confirmPassword" type="password" formControlName="confirmPassword" required />
-    </div>
-    <p *ngIf="isFormControlError('confirmPassword')" class="errors">Confirmation required</p>
-    <p *ngIf="checkPassword()" class="errors">Passwords don't match</p>
-
-    <!-- Age -->
-    <div class="label-input">
-      <label for="age">Age</label>
-      <input id="age" type="text" formControlName="age" required />
-    </div>
-    <p *ngIf="isFormControlError('age')" class="errors">Age is required</p>
-
-    <!-- Family Member Name -->
-    <div class="label-input">
-      <label for="familyMemberName">Family Member Name</label>
-      <input id="familyMemberName" type="text" formControlName="familyMemberName" required />
-    </div>
-    <p *ngIf="isFormControlError('familyMemberName')" class="errors">Family member name is required</p>
-
-    <!-- Family Member Phone -->
-    <div class="label-input">
-      <label for="familyMemberPh">Family Member Phone</label>
-      <input id="familyMemberPh" type="text" formControlName="familyMemberPh" required />
-    </div>
-    <p *ngIf="isFormControlError('familyMemberPh')" class="errors">Family member phone is required</p>
-
-    <!-- Submit Button -->
-    <button [disabled]="regFormGroup.invalid || usernameError">Register</button>
-  </form>
+  </div>
 </div>

@@ -1,53 +1,49 @@
-<!-- <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
-    
-    <div class="login-form">
-        
-        <div class="label-input">
-            <label for="username">Username</label>
-            <input type="text" placeholder="Enter username" formControlName="username" />
-        </div>
-        <p *ngIf="isFormControlError('username')">username required</p>
-         <p *ngIf="checkIfUserExists('username')">username already exists</p> -->
-        <!-- <div class="label-input">
-            <label for="email">Email</label>
-            <input type="text" placeholder="Enter email" formControlName="email" />
-        </div>
-        <p *ngIf="isEmailValid('email')">email should be valid</p>
-        <p *ngIf="isEmailRequired('email')">email required</p> -->
-         <!-- <p *ngIf="checkIfUserExists('email')">username already exists</p> -->
-        <!-- <div class="label-input">
-            <label for="password">Password</label>
-            <input type="password" placeholder="Password" formControlName="password" />
-        </div>
-        <a (click)="navigateToForgotPW()" class="text-primary">Forgot password?</a>
-        <button>Login</button>
-        <p *ngIf="inValidCredentials" class="errors">Username or password is incorrect</p>
-    </div>
-</form>
-{{loginForm.value | json}} --> 
-<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
-  <div class="login-form">
-    <h2>Login</h2>
 
-    <!-- Email -->
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" placeholder="Enter your email" formControlName="email" />
-      <p class="error" *ngIf="isEmailValid('email')">Email should be valid</p>
-      <p class="error" *ngIf="isEmailRequired('email')">Email is required</p>
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="login-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <h2>Welcome Back</h2>
+      <p>Sign in to continue your health journey</p>
     </div>
 
-    <!-- Password -->
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" placeholder="Enter your password" formControlName="password" />
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" placeholder="Enter your email" formControlName="email" />
+        <p class="error" *ngIf="isEmailValid('email')">Email should be valid</p>
+        <p class="error" *ngIf="isEmailRequired('email')">Email is required</p>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter your password" formControlName="password" />
+      </div>
+
+      <div class="form-actions">
+        <a (click)="navigateToForgotPW()" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="login-btn">
+        <span>Sign In</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+
+      <p *ngIf="inValidCredentials" class="error error-banner">Invalid email or password</p>
+    </form>
+
+    <div class="login-footer">
+      <p>Don't have an account? <a (click)="navigateToPage('register')" class="signup-link">Sign up</a></p>
     </div>
-
-    <a (click)="navigateToForgotPW()" class="forgot-link">Forgot password?</a>
-
-    <button type="submit" class="login-btn">Login</button>
-
-    <p *ngIf="inValidCredentials" class="error">Invalid email or password</p>
   </div>
-</form>
+</div>
 

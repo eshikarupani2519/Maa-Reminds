@@ -1,69 +1,172 @@
+.medicine-stock-container {
+  padding: var(--spacing-8);
+  font-family: var(--font-family);
+  background-color: var(--gray-50);
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: var(--spacing-8);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.header-icon {
+  width: 48px;
+  height: 48px;
+  background-color: var(--primary-light);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.header-title h1 {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.dashboard-btn {
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stock-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.medicine-stock-card {
+  background-color: var(--white);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-8);
+  box-shadow: var(--shadow-md);
+}
+
+.medicine-stock-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+}
+
+.medicine-stock-icon {
+  width: 48px;
+  height: 48px;
+  background-color: var(--primary-light);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.medicine-stock-header h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0;
+}
+
 .calendar-container {
   display: flex;
-  gap: 16px;
-  background: #e0f0ff;
-  padding: 20px;
-  border-radius: 16px;
+  gap: var(--spacing-4);
+  background: var(--primary-light);
+  padding: var(--spacing-6);
+  border-radius: var(--radius-xl);
   justify-content: center;
   flex-wrap: wrap;
-  width: 60%;
 }
 
 .column {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--spacing-3);
 }
 
 .pill {
   width: 60px;
   height: 60px;
-  background: white;
-  border: 2px solid #007bff;
+  background: var(--white);
+  border: 2px solid var(--primary-color);
   border-radius: 50%;
   text-align: center;
-  font-size: 13px;
-  color: #007bff;
-  font-weight: bold;
+  font-size: var(--font-size-sm);
+  color: var(--primary-color);
+  font-weight: 600;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
 }
 
 .pill.filled {
-  background: #007bff;
-  color: white;
+  background: var(--primary-color);
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+.pill:hover {
+  transform: scale(1.1);
 }
 
 .day {
-  font-size: 11px;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
 }
 
 .date {
-  font-size: 14px;
-}
-.rtn-to-dashboard {
-  background-color: transparent;
-  color: #007bff;
-  border: 2px solid #007bff;
-  margin-left: 12px; /* spacing between buttons */
-  padding: 10px 16px;
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  font-size: 14px;
 }
 
-.rtn-to-dashboard:hover {
-  background-color: #007bff;
-  color: white;
-  transform: scale(1.03);
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .calendar-container {
+    gap: var(--spacing-2);
+  }
+
+  .pill {
+    width: 50px;
+    height: 50px;
+  }
 }
 
-.top-bar {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px 40px 0;
-}

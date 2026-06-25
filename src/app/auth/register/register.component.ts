@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../register.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +12,7 @@ export class RegisterComponent {
   // constructor(private HttpClient:HttpClient){
 
   // } this is against the convention to directly communicate with backend hence we take help of service
-  constructor(private registerService: RegisterService){
+  constructor(private registerService: RegisterService,private router: Router){
 
   }
   //  ngOnInit(){
@@ -25,20 +26,33 @@ regFormGroup=new FormGroup({
   confirmPassword:new FormControl('',[Validators.required]),
  age:new FormControl('',[Validators.required]),
   familyMemberName:new FormControl('',[Validators.required]),
-  familyMemberPh:new FormControl('',[Validators.required]),
+  familyMemberPhone:new FormControl('',[Validators.required]),
+  otp: new FormControl('', [Validators.required])
   
 })
+navigateToPage(page: string) {
+  this.router.navigate([page]);
+}
 getFormControl(name:string){
   return this.regFormGroup.get(name);
 }
 isFormControlError(name:string){
   return this.getFormControl(name)?.errors?.['required'] && this.getFormControl(name)?.dirty
 }
+
 checkPassword()
 {
   return this.getFormControl('password')?.value != this.getFormControl('confirmPassword')?.value
   && this.getFormControl('password')?.dirty && this.getFormControl('confirmPassword')?.dirty &&
   this.getFormControl('password')?.touched && this.getFormControl('confirmPassword')?.touched
+}
+sendOtp() {
+  const email = this.regFormGroup.get('email')?.value;
+
+  this.registerService.sendOtp({ email }).subscribe({
+    next: () => alert('OTP sent'),
+    error: (err:any) => alert(err.error?.message)
+  });
 }
  submitData(){
     // console.log(this.regFormGroup.value)

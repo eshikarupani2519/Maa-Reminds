@@ -46,4 +46,7 @@ export class AppointmentReminderComponent implements OnInit {
   navigateToPage(page: string): void {
     this.router.navigate([page]);
   }
+    goToDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
 }

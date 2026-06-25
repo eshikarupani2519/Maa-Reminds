@@ -1,60 +1,84 @@
-<!-- <div class="medicine-info" *ngIf="medicine">
-    <h2>{{medicine.pillName}}</h2>
-    <p>Tenure: {{medicine.startDate | date}} to {{medicine.endDate | date}}</p>
-    <p>Frequency: {{medicine.frequency}}</p>
-    <p>Timing: {{medicine.timing}}</p>
-    <p>Before or after meal? -> {{medicine.beforeAfterMeal}}</p>
-    <p>Quantity of medicine remaining: {{medicine.quantityYouHave}}</p>
-    <p>description: {{medicine.description}}</p>
-    <div>
-        <button (click)="editMedicine(medicine._id)" class="btn btn-primary">Edit</button>
-<button (click)="deleteMedicine(medicine._id)" class="btn btn-danger">Delete</button>
-    </div>
+<div *ngIf="medicine" class="medicine-info-container">
+  <div class="medicine-info-card">
+    <div class="medicine-header">
+      <div class="medicine-header-top">
+        <div class="medicine-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.5 20.5l10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
+          </svg>
+        </div>
+        <h2>{{ medicine.pillName }}</h2>
+      </div>
+      <button class="dashboard-btn" (click)="goToDashboard()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        <span>Dashboard</span>
+      </button>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">Tenure</div>
+        <div class="info-value">{{medicine.startDate | date}} to {{medicine.endDate | date}}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Frequency</div>
+        <div class="info-value">{{ medicine.frequency }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Timing</div>
+        <div class="info-value">{{ medicine.timing }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Meal</div>
+        <div class="info-value">{{ medicine.beforeAfterMeal }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Quantity Left</div>
+        <div class="info-value">{{ medicine.quantityYouHave }}</div>
+      </div>
+
+      <div class="info-item full-width">
+        <div class="info-label">Description</div>
+        <div class="info-value">{{ medicine.description }}</div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button (click)="editMedicine(medicine._id)" class="btn-edit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+          <path d="m15 5 4 4"/>
+        </svg>
+        <span>Edit</span>
+      </button>
+      <button (click)="deleteMedicine(medicine._id)" class="btn-delete">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6h18"/>
+          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+        </svg>
+        <span>Delete</span>
+      </button>
+    </div>
+  </div>
 </div>
-<div *ngIf="!medicine">
-  <p>Loading medicine information...</p>
-</div> -->
 
-
-<div class="medicine-info">
-  <h2>{{ medicine.pillName }}</h2>
-
-  <div class="info-line">
-    <strong>Tenure:</strong>
-    <span>{{medicine.startDate | date}} to {{medicine.endDate | date}}</span>
+<div *ngIf="!medicine" class="loading-state">
+  <div class="loading-content">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10.5 20.5l10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+      <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
+    </svg>
+    <p>Loading medicine information...</p>
   </div>
-
-  <div class="info-line">
-    <strong>Frequency:</strong>
-    <span>{{ medicine.frequency }}</span>
-  </div>
-
-  <div class="info-line">
-    <strong>Timing:</strong>
-    <span>{{ medicine.timing }}</span>
-  </div>
-
-  <div class="info-line">
-    <strong>Meal:</strong>
-    <span>{{ medicine.beforeAfterMeal }}</span>
-  </div>
-
-  <div class="info-line">
-    <strong>Quantity Left:</strong>
-    <span>{{ medicine.quantityYouHave }}</span>
-  </div>
-
-  <div class="info-line">
-    <strong>Description:</strong>
-    <span>{{ medicine.description }}</span>
-  </div>
-
-  <div class="button-grp">
-    <button (click)="editMedicine(medicine._id)" class="btn btn-primary">Edit</button>
-<button (click)="deleteMedicine(medicine._id)" class="btn btn-danger">Delete</button> 
-  </div>
-
-</div>
-<div *ngIf="!medicine">
-  <p>Loading medicine information...</p>
-</div>
+</div> 

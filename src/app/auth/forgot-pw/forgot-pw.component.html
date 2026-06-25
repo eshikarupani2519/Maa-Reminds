@@ -1,44 +1,62 @@
 <div class="forgot-password-container">
-
-  <form [formGroup]="forgotPWForm"
-        class="login-form"
-        (ngSubmit)="submitForm()">
-
-    <h2 class="form-title">Reset Password</h2>
-
-    <!-- New Password -->
-    <div class="label-input">
-      <label>New Password</label>
-      <input type="password"
-             placeholder="Enter new password"
-             formControlName="newPassword" />
+  <div class="forgot-password-card">
+    <div class="forgot-password-header">
+      <div class="forgot-password-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h2>Reset Password</h2>
+      <p>Create a new secure password</p>
     </div>
 
-    <p *ngIf="forgotPWForm.get('newPassword')?.invalid 
-              && forgotPWForm.get('newPassword')?.touched"
-       class="errors">
-       Password must be at least 6 characters
-    </p>
+    <form [formGroup]="forgotPWForm" (ngSubmit)="submitForm()">
+      <!-- New Password -->
+      <div class="form-group">
+        <label for="newPassword">New Password</label>
+        <input type="password"
+               id="newPassword"
+               placeholder="Enter new password"
+               formControlName="newPassword" />
+        <p *ngIf="forgotPWForm.get('newPassword')?.invalid && forgotPWForm.get('newPassword')?.touched"
+           class="errors">
+           Password must be at least 6 characters
+        </p>
+      </div>
 
-    <!-- Confirm Password -->
-    <div class="label-input">
-      <label>Confirm Password</label>
-      <input type="password"
-             placeholder="Confirm new password"
-             formControlName="confirmPassword" />
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password"
+               id="confirmPassword"
+               placeholder="Confirm new password"
+               formControlName="confirmPassword" />
+        <p *ngIf="!passwordsMatch() && forgotPWForm.get('confirmPassword')?.touched"
+           class="errors">
+           Passwords do not match
+        </p>
+      </div>
+
+      <button type="submit"
+              class="submit-btn"
+              [disabled]="forgotPWForm.invalid || !passwordsMatch()">
+        <span>Reset Password</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+    </form>
+
+    <div class="forgot-password-footer">
+      <a (click)="navigateToPage('login')" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        <span>Back to Login</span>
+      </a>
     </div>
-
-    <p *ngIf="!passwordsMatch() 
-              && forgotPWForm.get('confirmPassword')?.touched"
-       class="errors">
-       Passwords do not match
-    </p>
-
-    <button type="submit"
-            [disabled]="forgotPWForm.invalid || !passwordsMatch()">
-      Reset Password
-    </button>
-
-  </form>
-
+  </div>
 </div>

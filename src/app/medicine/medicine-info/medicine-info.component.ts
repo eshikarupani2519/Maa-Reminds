@@ -18,6 +18,10 @@ export class MedicineInfoComponent implements OnInit {
     private pillsService: PillsService 
   ) {}
 
+    goToDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
+
   ngOnInit(): void {
     // Get the pill ID from the URL parameters
     this.id = this.activatedRoute.snapshot.paramMap.get('id');

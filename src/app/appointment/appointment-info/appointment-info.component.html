@@ -1,14 +1,78 @@
-<div *ngIf="appointment">
-  <h2>Appointment Details</h2>
-  <p><strong>Doctor:</strong> {{ appointment.doctorName }}</p>
-  <p><strong>Date:</strong> {{ appointment.date | date }}</p>
-  <p><strong>Time:</strong> {{ appointment.time }}</p>
-  <p><strong>Notes:</strong> {{ appointment.notes }}</p>
-  <div>
-    <button (click)="editAppointment(appointment._id)" class="btn btn-primary">Edit</button>
-    <button (click)="deleteAppointment(appointment._id)" class="btn btn-danger">Delete</button>
+<div *ngIf="appointment" class="appointment-info-container">
+  <div class="appointment-info-card">
+    <div class="appointment-header">
+      <div class="appointment-header-top">
+        <div class="appointment-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <h2>Appointment Details</h2>
+      </div>
+      <button class="dashboard-btn" (click)="goToDashboard()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        <span>Dashboard</span>
+      </button>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">Doctor</div>
+        <div class="info-value">{{ appointment.doctorName }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Date</div>
+        <div class="info-value">{{ appointment.date | date }}</div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">Time</div>
+        <div class="info-value">{{ appointment.time }}</div>
+      </div>
+
+      <div class="info-item full-width">
+        <div class="info-label">Notes</div>
+        <div class="info-value">{{ appointment.notes }}</div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button (click)="editAppointment(appointment._id)" class="btn-edit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+          <path d="m15 5 4 4"/>
+        </svg>
+        <span>Edit</span>
+      </button>
+      <button (click)="deleteAppointment(appointment._id)" class="btn-delete">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6h18"/>
+          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+        </svg>
+        <span>Delete</span>
+      </button>
+    </div>
   </div>
 </div>
-<div *ngIf="!appointment">
-  <p>Loading appointment information...</p>
+
+<div *ngIf="!appointment" class="loading-state">
+  <div class="loading-content">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    <p>Loading appointment information...</p>
+  </div>
 </div>

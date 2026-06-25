@@ -64,6 +64,9 @@ export class AddAppointmentComponent implements OnInit {
       notes: ['']
     });
   }
+    goToDashboard(): void {
+    this.router.navigate(['/dashboard']);
+  }
 
   ngOnInit(): void {
     this.appointmentId = this.activatedRoute.snapshot.paramMap.get('id');

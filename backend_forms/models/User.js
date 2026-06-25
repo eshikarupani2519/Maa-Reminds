@@ -47,7 +47,17 @@ const pillSchema = new mongoose.Schema({
   timing: { type: String, required: true },
   beforeAfterMeal: { type: String, required: true },
   quantityYouHave: { type: Number },
-  description: { type: String }
+  description: { type: String },
+  responseStatus: {
+    type: String,
+    default: 'pending'
+},
+
+
+  //now new
+   lastNotificationSentDate: { type: Date,default:null },
+  responseStatus: { type: String, default: null }, // pending / yes / no / missed
+  responseDeadline: { type: Date }
 });
 
 const appointmentSchema = new mongoose.Schema({
@@ -55,6 +65,8 @@ const appointmentSchema = new mongoose.Schema({
   date: { type: Date, required: true },
   time: { type: String, required: true },
   notes: { type: String },
+  //new
+  lastNotificationSentDate: { type: Date }
 });
 
 const userSchema = new mongoose.Schema({
@@ -73,6 +85,8 @@ const userSchema = new mongoose.Schema({
   appointmentHistory: [appointmentSchema],
   resetToken: String,
   resetTokenExpiry: Date,
+  //new
+   familyAlertSent: { type: Boolean, default: false }
 });
 
 const User = mongoose.model('User', userSchema);
